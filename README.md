@@ -10,4 +10,4 @@ The client, a major hospital in your city ('the hospital'), has approached you t
 The hospital has been operating at a deficit for the past few years. The hospital knows it significantly overspends on staffing costs as it does not know how to determine staffing numbers.
 
 ### Question
-Can staffing numbers, defined as 'activity units', be optimised to minimise costsm while meeting minimum operational requirements to ensure the hospital still receives its activity-based funding from the government?
+Can staffing numbers, defined as 'activity units', be optimised to minimise costs while meeting minimum operational requirements to ensure the hospital still receives its activity-based funding from the government?

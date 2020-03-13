@@ -24,15 +24,13 @@ clean_cost = 2060
 
 # Define Objective Function that governs the problem we are trying to solve
 
-hosp_prob += x * med_cost + y * nurs_cost + z * admin_cost + a * clean_cost
+hosp_prob += x*med_cost + y*nurs_cost + z*admin_cost + a*clean_cost
 
 # Define constraints which bound the optimisation solution
-# In the hospital context, these are pre-determined by government funding standards
 
-hosp_prob += x >= 52000
-hosp_prob += y >= x * 1.5
-hosp_prob += z >= 17500
-hosp_prob += a >= 13450
+hosp_prob += x >= 2*z + 2*a
+hosp_prob += y >= x*1.5
+hosp_prob += 2*z <= a
 
 # Display the problem on-screen
 

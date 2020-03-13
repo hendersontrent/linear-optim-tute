@@ -28,9 +28,14 @@ hosp_prob += x*med_cost + y*nurs_cost + z*admin_cost + a*clean_cost
 
 # Define constraints which bound the optimisation solution
 
-hosp_prob += x >= 2*z + 2*a
-hosp_prob += y >= x*1.5
+hosp_prob += x >= 5000
+hosp_prob += y >= 5000
+hosp_prob += z >= 5000
+hosp_prob += a >= 5000
+hosp_prob += 2*z + 2*a <= x
+hosp_prob += x*1.5 <= y
 hosp_prob += 2*z <= a
+hosp_prob += x + y + z + a >= 50000
 
 # Display the problem on-screen
 
@@ -42,7 +47,6 @@ status = hosp_prob.solve()
 print(p.LpStatus[status])
 
 # Print the optimisation solution in terms of overall minimised cost output
-
 # as well as the optimised number of units per staffing area
 
 print(p.value(x), p.value(y), p.value(z), p.value(a),

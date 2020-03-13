@@ -8,11 +8,14 @@ hosp_prob = p.LpProblem('Problem', p.LpMinimize)
 
 # Define problem variables
 # In the hospital context, these will represent staffing areas of the hospital
+# Minimums are defined by government for each and happen to be 5000 units
 
-x = p.LpVariable("x", lowBound = 0) # Create a variable x >= 0 to represent medical staff units
-y = p.LpVariable("y", lowBound = 0) # Create a variable y >= 0 to represent nursing staff units
-z = p.LpVariable("z", lowBound = 0) # Create a variable z >= 0 to represent admin staff units
-a = p.LpVariable("a", lowBound = 0) # Create a variable a >= 0 to represent cleaning staff units
+the_lowBound = 5000
+
+x = p.LpVariable("x", lowBound = the_lowBound) # Create a variable x >= 5000 to represent medical staff units
+y = p.LpVariable("y", lowBound = the_lowBound) # Create a variable y >= 5000 to represent nursing staff units
+z = p.LpVariable("z", lowBound = the_lowBound) # Create a variable z >= 5000 to represent admin staff units
+a = p.LpVariable("a", lowBound = the_lowBound) # Create a variable a >= 5000 to represent cleaning staff units
 
 # Define cost per unit for each staffing area
 # These are set up as named variables so we can enact changes here and flow them through
@@ -27,11 +30,8 @@ clean_cost = 2060
 hosp_prob += x*med_cost + y*nurs_cost + z*admin_cost + a*clean_cost
 
 # Define constraints which bound the optimisation solution
+# Hypothetical minimum staffing units set by government is 50000
 
-hosp_prob += x >= 5000
-hosp_prob += y >= 5000
-hosp_prob += z >= 5000
-hosp_prob += a >= 5000
 hosp_prob += 2*z + 2*a <= x
 hosp_prob += x*1.5 <= y
 hosp_prob += 2*z <= a

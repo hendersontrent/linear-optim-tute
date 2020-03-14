@@ -1,6 +1,9 @@
-# Import library required for linear programming
+# Import libraries
 
 import pulp as p
+import plotly.graph_objects as go
+
+#-------------------------------OPTIMISATION------------------------------------
 
 # Establish a minimisation problem environment
 
@@ -12,10 +15,10 @@ hosp_prob = p.LpProblem('Problem', p.LpMinimize)
 
 the_lowBound = 5000
 
-x = p.LpVariable("x", lowBound = the_lowBound) # Create a variable x >= 5000 to represent medical staff units
-y = p.LpVariable("y", lowBound = the_lowBound) # Create a variable y >= 5000 to represent nursing staff units
-z = p.LpVariable("z", lowBound = the_lowBound) # Create a variable z >= 5000 to represent admin staff units
-a = p.LpVariable("a", lowBound = the_lowBound) # Create a variable a >= 5000 to represent cleaning staff units
+x = p.LpVariable("x", lowBound = the_lowBound) # Medical staff units variable
+y = p.LpVariable("y", lowBound = the_lowBound) # Nursing staff units variable
+z = p.LpVariable("z", lowBound = the_lowBound) # Admin staff units variable
+a = p.LpVariable("a", lowBound = the_lowBound) # Cleaning staff units variable
 
 # Define cost per unit for each staffing area
 # These are set up as named variables so we can enact changes here and flow them through
@@ -51,3 +54,26 @@ print(p.LpStatus[status])
 
 print(p.value(x), p.value(y), p.value(z), p.value(a),
 p.value(hosp_prob.objective))
+
+#-------------------------------VISUALISATION-----------------------------------
+
+fig = go.Figure(go.Waterfall(
+    name = "20", orientation = "v",
+    measure = ['relative', 'relative', 'relative', 'relative', 'total'],
+    x = ['Medical Staff', 'Nursing Staff', 'Admin Staff', 'Cleaning Staff', 'Total Cost'],
+    textposition = "outside",
+    text = [(p.value(x)*med_cost), (p.value(y)*nurs_cost),
+    (p.value(z)*admin_cost), (p.value(a)*clean_cost),
+    p.value(hosp_prob.objective)],
+    y = [(p.value(x)*med_cost), (p.value(y)*nurs_cost),
+    (p.value(z)*admin_cost), (p.value(a)*clean_cost),
+    p.value(hosp_prob.objective)],
+    connector = {"line":{"color":"rgb(63, 63, 63)"}},
+))
+
+fig.update_layout(
+        title = "Optimised hospital staffing expenditure",
+        showlegend = False
+)
+
+fig.show()

@@ -1,5 +1,5 @@
 # linear-optim-tute
-Builds hospital-based tutorial on linear programming in Python to be displayed on Orbisant Analytics website.
+Builds hospital-based tutorial on linear programming in Python to be displayed on Orbisant Analytics website. The Orbisant Analytics post can be accessed at: https://www.orbisantanalytics.com/mathematical-optimisation
 
 ## Scenario explanation
 
@@ -15,7 +15,3 @@ Can staffing numbers, defined as 'activity units', be optimised to minimise cost
 ### Chart output
 
 ![This tutorial summarises optimised outputs in an interactive waterfall chart](https://github.com/hendersontrent/linear-optim-tute/blob/master/cost-waterfall.png)
-
-## Link
-
-The Orbisant Analytics post can be accessed at: https://www.orbisantanalytics.com/mathematical-optimisation

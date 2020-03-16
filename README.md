@@ -12,6 +12,10 @@ The hospital has been operating at a deficit for the past few years. The hospita
 ### Question
 Can staffing numbers, defined as 'activity units', be optimised to minimise costs while meeting minimum operational requirements to ensure the hospital still receives its activity-based funding from the government?
 
+### Chart output
+
+![This tutorial summarises optimised outputs in an interactive waterfall chart](https://github.com/hendersontrent/linear-optim-tute/blob/master/cost-waterfall.png)
+
 ## Link
 
 The Orbisant Analytics post can be accessed at: https://www.orbisantanalytics.com/mathematical-optimisation
